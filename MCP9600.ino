@@ -14,6 +14,7 @@ void setup()
   device_set();
   
 }
+///// this function will read the hot and cold junction temp
 int read_temp()
 {
   Wire.beginTransmission(Addr);
@@ -47,7 +48,7 @@ int read_temp()
   }
 }
 
-
+/// this function can be used to see if the temp conversion is complete or not
 int temp_stat()
 {
   Wire.beginTransmission(Addr);
@@ -62,6 +63,8 @@ int temp_stat()
  // Serial.print(stat);
   return stat;
 }
+
+/// this functon can be used to clear the temp conversion flag
 int temp_stat_clr()
 {
   Wire.beginTransmission(Addr);
@@ -69,7 +72,7 @@ int temp_stat_clr()
   Wire.write(0x0F);
   Wire.endTransmission();
 }
-
+////// this function can be used to set the thermocuple configuration 
 int temrmo_set()
 {
   Wire.beginTransmission(Addr);
@@ -77,7 +80,7 @@ int temrmo_set()
   Wire.write(0x00);
   Wire.endTransmission();
 }
-
+////////////// this function can be used to set the device config
 int device_set()
 {
   Wire.beginTransmission(Addr);
@@ -89,10 +92,8 @@ void loop()
 {
   
   temp_stat();
- //   char thermo_stat = &temp_stat;
     byte thermo_ready =  (stat && 0x40); 
-//     Serial.println(stat); 
-//     Serial.println(thermo_ready); 
+
     if(thermo_ready)
     {
       read_temp();
