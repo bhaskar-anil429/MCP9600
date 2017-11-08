@@ -27,8 +27,8 @@ int read_temp()
    data2 = Wire.read();
 //  Serial.println(data1);
 //  Serial.println(data2);
-   if((data1 && 0x80) == 0x80)
-  {
+    byte low_temp = data1 && 0x80;
+   if(low_temp)
 //    data1 = data1 & 0x7F;
 //   temp = 1024 - ( data1 * 16 + data2/16);
   temp = ( data1 * 16 + data2/16) - 4096;
@@ -36,7 +36,8 @@ int read_temp()
   Serial.print(temp);
   Serial.println("\n");
   }
-  else 
+  else
+  {
   data1 = data1 *16;
   data2 = data2 * 0.0625;
 //  Serial.println(data1);
@@ -47,6 +48,7 @@ int read_temp()
   Serial.print(temp);
   Serial.println("\n");
   }
+    }
 }
 
 /// this function can be used to see if the temp conversion is complete or not
