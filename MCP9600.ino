@@ -29,6 +29,7 @@ int read_temp()
 //  Serial.println(data2);
     byte low_temp = data1 && 0x80;
    if(low_temp)
+   {
 //    data1 = data1 & 0x7F;
 //   temp = 1024 - ( data1 * 16 + data2/16);
   temp = ( data1 * 16 + data2/16) - 4096;
