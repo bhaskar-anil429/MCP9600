@@ -27,7 +27,7 @@ int read_temp()
    data2 = Wire.read();
 //  Serial.println(data1);
 //  Serial.println(data2);
-    byte low_temp = data1 && 0x80;
+    byte low_temp = data1 & 0x80;
    if(low_temp)
    {
 //    data1 = data1 & 0x7F;
