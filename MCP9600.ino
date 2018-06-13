@@ -96,8 +96,8 @@ void loop()
 {
   
   temp_stat();
-    byte thermo_ready =  (stat && 0x40); 
-
+//    byte thermo_ready =  (stat && 0x40); 
+    byte thermo_ready =  (stat & 0x40); 
     if(thermo_ready)
     {
       read_temp();
